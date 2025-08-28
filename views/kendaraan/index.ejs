@@ -1,0 +1,52 @@
+<h2>Daftar Kendaraan</h2>
+
+<!-- form add -->
+<form action="/kendaraan/add" method="POST" enctype="multipart/form-data" class="row g-2 mb-3">
+  <div class="col-md-3"><input name="nopolisi" class="form-control" placeholder="No. Polisi" required></div>
+  <div class="col-md-2">
+    <select name="type" class="form-control">
+      <option value="motor">Motor</option>
+      <option value="mobil">Mobil</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <select name="id_tarif" class="form-control" required>
+      <% tariffs.forEach(t => { %>
+        <option value="<%= t.id_tarif %>"><%= t.type %> - Rp <%= t.harga %> / <%= t.waktu %> jam</option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="col-md-2"><input name="warna" class="form-control" placeholder="Warna"></div>
+  <div class="col-md-2"><input type="file" name="foto" class="form-control"></div>
+  <div class="col-md-1"><button class="btn btn-primary">Tambah</button></div>
+</form>
+
+<table class="table table-striped">
+  <thead><tr><th>#</th><th>Nopol</th><th>Type</th><th>Tarif</th><th>Jam Masuk</th><th>Jam Keluar</th><th>Status</th><th>Aksi</th></tr></thead>
+  <tbody>
+    <% kendaraan.forEach((k,i) => { %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= k.nopolisi %></td>
+        <td><%= k.type %></td>
+        <td>Rp <%= k.harga || '-' %></td>
+        <td><%= k.jam_masuk %></td>
+        <td><%= k.jam_keluar || '-' %></td>
+        <td><%= k.status %></td>
+        <td>
+          <% if (!k.jam_keluar) { %>
+            <form action="/kendaraan/exit/<%= k.id_kendaraan %>" method="post" style="display:inline">
+              <button class="btn btn-warning btn-sm">Keluar</button>
+            </form>
+          <% } else if (k.status !== 'sudah bayar') { %>
+            <a class="btn btn-success btn-sm" href="/kendaraan/bayar/<%= k.id_kendaraan %>">Bayar</a>
+          <% } else { %>
+            <span class="badge bg-success">Selesai</span>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<a href="/dashboard" class="btn btn-primary col-md-1">Kembali</a>

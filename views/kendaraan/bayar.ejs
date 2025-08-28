@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pembayaran Kendaraan</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Konfirmasi Pembayaran</h1>
+  
+  <p><strong>Nomor Polisi:</strong> <%= k.nopolisi %></p>
+  <p><strong>Type:</strong> <%= k.type %></p>
+  <p><strong>Jam Masuk:</strong> <%= k.jam_masuk %></p>
+  <p><strong>Jam Keluar:</strong> <%= k.jam_keluar %></p>
+  <p><strong>Lama Parkir:</strong> <%= hours %> jam</p>
+  <p><strong>Total Bayar:</strong> Rp <%= total.toLocaleString() %></p>
+
+  <form method="post" action="/kendaraan/bayar/<%= k.id_kendaraan %>">
+    <button type="submit">Konfirmasi Bayar</button>
+  </form>
+
+  <a href="/kendaraan">Kembali</a>
+</body>
+</html>

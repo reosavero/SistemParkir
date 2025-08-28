@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <h2>Dashboard Super Admin</h2>
+  <p>Selamat datang, <strong><%= user.username %></strong> (Role: <%= user.role %>)</p>
+
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card text-white bg-primary mb-3 shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Kendaraan</h5>
+          <p class="card-text fs-3"><%= totalKendaraan %></p>
+          <a href="/kendaraan" class="btn btn-light btn-sm">Lihat</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-white bg-success mb-3 shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Users</h5>
+          <p class="card-text fs-3"><%= totalUsers %></p>
+          <a href="/users" class="btn btn-light btn-sm">Kelola</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-white bg-warning mb-3 shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Tarif</h5>
+          <p class="card-text fs-3"><%= totalTarif %></p>
+          <a href="/tarif" class="btn btn-light btn-sm">Atur</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
