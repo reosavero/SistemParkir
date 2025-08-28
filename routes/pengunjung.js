@@ -22,9 +22,18 @@ router.get('/', async (req, res) => {
 });
 
 // 📌 Form tambah pengunjung
-router.get('/add', (req, res) => {
-  res.render('pengunjung/add');
+router.get('/add', async (req, res) => {
+  try {
+    const Kendaraan = require('../models/Model_Kendaraan');
+    const kendaraan = await Kendaraan.getAll();
+
+    res.render('pengunjung/add', { kendaraan });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error menampilkan form tambah pengunjung');
+  }
 });
+
 
 // 📌 Simpan data pengunjung baru
 router.post('/add', async (req, res) => {
@@ -43,8 +52,13 @@ router.get('/edit/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const pengunjung = await Pengunjung.getById(id);
+
     if (!pengunjung) return res.redirect('/pengunjung');
-    res.render('pengunjung/edit', { pengunjung });
+
+    const Kendaraan = require('../models/Model_Kendaraan');
+    const kendaraan = await Kendaraan.getAll();
+
+    res.render('pengunjung/edit', { pengunjung, kendaraan });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error menampilkan form edit');

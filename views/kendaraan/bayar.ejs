@@ -16,9 +16,9 @@
   <p><strong>Total Bayar:</strong> Rp <%= total.toLocaleString() %></p>
 
   <form method="post" action="/kendaraan/bayar/<%= k.id_kendaraan %>">
-    <button type="submit">Konfirmasi Bayar</button>
+    <button class="btn btn-sm btn-success" type="submit">Konfirmasi Bayar</button>
   </form>
 
-  <a href="/kendaraan">Kembali</a>
+    <a href="/dashboard" class="btn btn-secondary">Kembali</a>
 </body>
 </html>

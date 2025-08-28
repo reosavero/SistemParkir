@@ -48,7 +48,7 @@ router.post("/login", async (req, res) => {
     if (user.role === "super admin") {
       return res.redirect("/dashboard");
     } else if (user.role === "admin") {
-      return res.redirect("/kendaraan"); // halaman utama admin (kendaraan, parkir, dll)
+      return res.redirect("/dashboardadmin"); // halaman utama admin (kendaraan, parkir, dll)
     } else {
       return res.redirect("/");
     }

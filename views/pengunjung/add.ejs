@@ -1,0 +1,31 @@
+<h2>Tambah Pengunjung</h2>
+<form action="/pengunjung/add" method="POST">
+  <div class="mb-3">
+    <label>Wajah</label>
+    <input type="text" name="wajah" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Pakaian</label>
+    <input type="text" name="pakaian" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Jenis Kelamin</label>
+    <select name="jenis_kelamin" class="form-control" required>
+      <option value="">-- pilih --</option>
+      <option value="laki-laki">Laki-laki</option>
+      <option value="perempuan">Perempuan</option>
+    </select>
+  </div>
+  <div class="mb-3">
+  <label>Kendaraan</label>
+  <select name="id_kendaraan" class="form-control">
+    <option value="">-- Tidak membawa kendaraan --</option>
+    <% kendaraan.forEach(k => { %>
+      <option value="<%= k.id_kendaraan %>"><%= k.nopolisi %></option>
+    <% }) %>
+  </select>
+</div>
+
+  <button type="submit" class="btn btn-success">Simpan</button>
+  <a href="/pengunjung" class="btn btn-secondary">Kembali</a>
+</form>

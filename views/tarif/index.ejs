@@ -2,33 +2,40 @@
   <h2 class="mb-4">Daftar Tarif</h2>
 
   <% if (data.length > 0) { %>
-    <table class="table table-bordered table-hover table-striped">
-      <thead class="table-dark text-center">
-        <tr>
-          <th>ID</th>
-          <th>Jenis Kendaraan</th>
-          <th>Harga per Jam</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% data.forEach(t => { %>
-          <tr>
-            <td class="text-center"><%= t.id_tarif %></td>
-            <td>
-              <span class="badge bg-info text-dark"><%= t.type %></span>
-            </td>
-            <td class="text-center"><%= t.harga %></td>
-            <td class="text-center">
-              <a href="/tarif/edit/<%= t.id_tarif %>" class="btn btn-sm btn-warning">Edit</a>
-              <a href="/tarif/delete/<%= t.id_tarif %>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tarif ini?')">Hapus</a>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
+  <table class="table table-bordered table-hover table-striped">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>ID</th>
+        <th>Jenis Kendaraan</th>
+        <th>Harga per Jam</th>
+        <th>Waktu (menit)</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(t => { %>
+      <tr>
+        <td class="text-center"><%= t.id_tarif %></td>
+        <td><span class="badge bg-info text-dark"><%= t.type %></span></td>
+        <td class="text-center"><%= t.harga %></td>
+        <td class="text-center"><%= t.waktu %></td>
+        <td class="text-center">
+          <a href="/tarif/edit/<%= t.id_tarif %>" class="btn btn-sm btn-warning"
+            >Edit</a
+          >
+          <a
+            href="/tarif/delete/<%= t.id_tarif %>"
+            class="btn btn-sm btn-danger"
+            onclick="return confirm('Yakin ingin menghapus tarif ini?')"
+            >Hapus</a
+          >
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
   <% } else { %>
-    <p class="text-center text-muted">Belum ada tarif</p>
+  <p class="text-center text-muted">Belum ada tarif</p>
   <% } %>
 
   <div class="d-flex justify-content-between mt-3">

@@ -3,7 +3,8 @@
   <p>Selamat datang, <strong><%= user.username %></strong> (Role: <%= user.role %>)</p>
 
   <div class="row mt-4">
-    <div class="col-md-4">
+    <!-- Kendaraan -->
+    <div class="col-md-3">
       <div class="card text-white bg-primary mb-3 shadow">
         <div class="card-body">
           <h5 class="card-title">Total Kendaraan</h5>
@@ -13,7 +14,8 @@
       </div>
     </div>
 
-    <div class="col-md-4">
+    <!-- Users -->
+    <div class="col-md-3">
       <div class="card text-white bg-success mb-3 shadow">
         <div class="card-body">
           <h5 class="card-title">Total Users</h5>
@@ -23,12 +25,24 @@
       </div>
     </div>
 
-    <div class="col-md-4">
+    <!-- Tarif -->
+    <div class="col-md-3">
       <div class="card text-white bg-warning mb-3 shadow">
         <div class="card-body">
           <h5 class="card-title">Total Tarif</h5>
           <p class="card-text fs-3"><%= totalTarif %></p>
           <a href="/tarif" class="btn btn-light btn-sm">Atur</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pengunjung -->
+    <div class="col-md-3">
+      <div class="card text-white bg-danger mb-3 shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Pengunjung</h5>
+          <p class="card-text fs-3"><%= totalPengunjung %></p>
+          <a href="/pengunjung" class="btn btn-light btn-sm">Kelola</a>
         </div>
       </div>
     </div>

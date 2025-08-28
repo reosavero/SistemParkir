@@ -1,0 +1,33 @@
+<h2>Edit Pengunjung</h2>
+<form action="/pengunjung/edit/<%= pengunjung.id_pengunjung %>" method="POST">
+  <div class="mb-3">
+    <label>Wajah</label>
+    <input type="text" name="wajah" class="form-control" value="<%= pengunjung.wajah %>" required>
+  </div>
+  <div class="mb-3">
+    <label>Pakaian</label>
+    <input type="text" name="pakaian" class="form-control" value="<%= pengunjung.pakaian %>" required>
+  </div>
+  <div class="mb-3">
+    <label>Jenis Kelamin</label>
+    <select name="jenis_kelamin" class="form-control" required>
+      <option value="laki-laki" <%= pengunjung.jenis_kelamin === 'laki-laki' ? 'selected' : '' %>>Laki-laki</option>
+      <option value="perempuan" <%= pengunjung.jenis_kelamin === 'perempuan' ? 'selected' : '' %>>Perempuan</option>
+    </select>
+  </div>
+  <div class="mb-3">
+  <label>Kendaraan</label>
+  <select name="id_kendaraan" class="form-control">
+    <option value="">-- Tidak membawa kendaraan --</option>
+    <% kendaraan.forEach(k => { %>
+      <option value="<%= k.id_kendaraan %>" <%= pengunjung.id_kendaraan == k.id_kendaraan ? 'selected' : '' %>>
+        <%= k.nopolisi %>
+      </option>
+    <% }) %>
+  </select>
+</div>
+
+  <button type="submit" class="btn btn-warning">Update</button>
+  <a href="/pengunjung" class="btn btn-secondary">Kembali</a>
+</form>
++

@@ -1,14 +1,32 @@
-  <h1>Edit Tarif</h1>
-  <form method="post" action="/tarif/edit/<%= tarif.id_tarif %>">
-    <label>Jenis Kendaraan</label><br>
-    <input type="text" name="jenis" value="<%= tarif.type %>" required><br><br>
+<div class="container mt-4">
+  <h2 class="mb-4">Edit Tarif</h2>
 
-    <label>Harga</label><br>
-    <input type="number" name="harga" value="<%= tarif.harga %>" required><br><br>
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
 
-    <button type="submit">Update</button>
+  <form action="/tarif/edit/<%= tarif.id_tarif %>" method="POST" class="card p-4 shadow-sm">
+    <div class="mb-3">
+  <label for="type" class="form-label">Jenis Kendaraan</label>
+  <select class="form-select" id="type" name="type" required>
+    <option value="mobil" <%= tarif.type === 'mobil' ? 'selected' : '' %>>Mobil</option>
+    <option value="motor" <%= tarif.type === 'motor' ? 'selected' : '' %>>Motor</option>
+  </select>
+</div>
+
+    <div class="mb-3">
+      <label for="harga" class="form-label">Harga per Jam</label>
+      <input type="number" class="form-control" id="harga" name="harga" value="<%= tarif.harga %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="waktu" class="form-label">Waktu (menit)</label>
+      <input type="number" class="form-control" id="waktu" name="waktu" value="<%= tarif.waktu %>" required>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <a href="/tarif" class="btn btn-secondary">Batal</a>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
   </form>
-  <br>
-  <a href="/tarif">Kembali</a>
-</body>
-</html>
+</div>

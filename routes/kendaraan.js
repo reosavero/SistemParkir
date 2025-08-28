@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Kendaraan = require('../models/Model_Kendaraan');
-const Tarif = require('../models/Model_tarif');
+const Tarif = require('../models/Model_Tarif');
 const multer = require('multer');
 const path = require('path');
 
@@ -98,5 +98,25 @@ router.post('/bayar/:id', isAuth, async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+// DELETE kendaraan (hanya kalau sudah selesai)
+router.get('/delete/:id', isAuth, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const k = await Kendaraan.getById(id);
+    if (!k) return res.redirect('/kendaraan');
+
+    if (k.status !== 'sudah bayar') {
+      return res.status(400).send('Kendaraan belum selesai, tidak bisa dihapus');
+    }
+
+    await Kendaraan.delete(id);
+    res.redirect('/kendaraan');
+  } catch (err) {
+    console.error('Error GET /kendaraan/delete:', err.message);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 module.exports = router;

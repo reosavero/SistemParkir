@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Tarif = require("../models/Model_tarif");
+const Tarif = require("../models/Model_Tarif");
 
 // middleware cek login
 function isAuth(req, res, next) {
@@ -35,8 +35,8 @@ router.get("/create", isAuth, isSuperAdmin, (req, res) => {
 // Proses tambah tarif
 router.post("/create", isAuth, isSuperAdmin, async (req, res) => {
   try {
-    const { jenis, harga } = req.body;
-    await Tarif.store({ jenis, harga });
+    const { harga, waktu, type } = req.body;
+    await Tarif.store({ harga, waktu, type });
     res.redirect("/tarif");
   } catch (err) {
     console.error(err);
@@ -50,7 +50,7 @@ router.get("/edit/:id", isAuth, isSuperAdmin, async (req, res) => {
     const id = req.params.id;
     const tarif = await Tarif.getById(id);
     if (!tarif) return res.status(404).send("Tarif tidak ditemukan");
-    res.render("tarif/edit", { user: req.session.user, tarif });
+    res.render("tarif/edit", { user: req.session.user, tarif, error: null });
   } catch (err) {
     console.error(err);
     res.status(500).send("Terjadi kesalahan");
@@ -61,15 +61,14 @@ router.get("/edit/:id", isAuth, isSuperAdmin, async (req, res) => {
 router.post("/edit/:id", isAuth, isSuperAdmin, async (req, res) => {
   try {
     const id = req.params.id;
-    const { jenis, harga } = req.body;
-    await Tarif.update(id, { jenis, harga });
+    const { harga, waktu, type } = req.body;
+    await Tarif.update(id, { harga, waktu, type });
     res.redirect("/tarif");
   } catch (err) {
     console.error(err);
     res.status(500).send("Gagal mengupdate tarif");
   }
 });
-
 
 // Hapus tarif
 router.get("/delete/:id", isAuth, isSuperAdmin, async (req, res) => {

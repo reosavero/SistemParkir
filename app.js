@@ -37,6 +37,7 @@ const tarifRouter = require('./routes/tarif');
 const kendaraanRouter = require('./routes/kendaraan');
 const pengunjungRouter = require('./routes/pengunjung');
 const dashboardRoutes = require("./routes/dashboard");
+const dashboardAdminRoutes = require("./routes/dashboardadmin");
 
 
 app.use('/auth', authRouter);
@@ -45,6 +46,7 @@ app.use('/tarif', tarifRouter);
 app.use('/kendaraan', kendaraanRouter);
 app.use('/pengunjung', pengunjungRouter);
 app.use('/dashboard', dashboardRoutes);
+app.use("/dashboardadmin", dashboardAdminRoutes);
 
 
 app.get('/', (req, res) => res.redirect('/kendaraan'));
